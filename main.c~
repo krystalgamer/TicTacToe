@@ -385,7 +385,7 @@ void FirstFreeSpot(char a[][3],char cpu)
 	
 	
 }
-int JogarCPU(char a[][3], int x1, int x2,int num)
+int JogarCPU(char a[][3], int x1, int x2,int num,int b)
 {
 	
 
@@ -396,18 +396,53 @@ int JogarCPU(char a[][3], int x1, int x2,int num)
 		return;
 	
 	}
-	if(num==0 && ImpedirLinhas(a))
+	if(num== 0)
 	{
-		return 0;
-	}
-	if(num==0 && ImpedirColunas(a))
-	{	
-		return 0;
-	}
-	if(num==0 && ImperdirDiagonal(a))
-	{
-		return 0;
+		if(b<=2 && b<5)
+		{
+		switch(b)
+		{
+		case 2:
+			if(
+			ImpedirLinhas(a))
+				return 0;
+
+			if(ImpedirColunas(a))
+				return 0;
+			break;
+		case 3:
+			if(ImperdirDiagonal(a))
+				return 0;
+
+			if(ImpedirLinhas(a))
+				return 0;
+			break;
+		case 4:
+			if(ImperdirDiagonal(a))
+				return 0;
+
+			if(ImpedirColunas(a))
+				return 0;
+			break;
 		}
+		
+		}
+		if(num == 0 && b==5)
+	{
+		if(ImpedirLinhas(a))
+				return 0;
+
+		if(ImpedirColunas(a))
+				return 0;
+		if(ImperdirDiagonal(a))
+				return 0;
+	
+	}
+		
+	}
+	
+	
+	
 	if(num==30)
 	{
 		
@@ -425,27 +460,53 @@ int JogarCPU(char a[][3], int x1, int x2,int num)
 	num++;
 	
 	
-	return JogarCPU(a, rand_num, rand_num1,num);
+	return JogarCPU(a, rand_num, rand_num1,num, b);
 	
 }
 
+
 int main()
 {
+	printf("\033[2J");
 	int x1,y1;
+	int b= 99,c = 99;
 	char tab[3][3] = {{' ',' ',' '},{' ', ' ',' '},{' ', ' ',' '}};
 	
 	
 	
 	
-	int b;
+	do
+	{
+		printf("1. Begginer Mode\n");
+			printf("\t 1.CPU Start\n");
+			printf("\t 2.You Start\n");
+		printf("2. Advanced Mode 1\n");
+				printf("\t\t 1.CPU Start\n");
+				printf("\t\t 2.You Start\n");
+		printf("3. Advanced Mode 2\n");
+				printf("\t\t 1.CPU Start\n");
+				printf("\t\t 2.You Start\n");
+		printf("4. Advanced Mode 3\n");
+				printf("\t\t 1.CPU Start\n");
+				printf("\t\t 2.You Start\n");
+		printf("5. Expert Mode\n");
+			printf("\t 1.CPU Start (Impossible  to win :P)\n");
+			printf("\t 2.You Start\n");
+		scanf("%d %d", &b, &c);
+	}while(b > 5 && b<0 && c>2 && c<1 );
 	
 	
-	//printf("%d\n", Xwin(tab));
+	
+	
+	
+	
 	
 	
 	
 	do{
-	JogarCPU(tab, 99,99,0);
+	if(c == 1)
+	{
+	 JogarCPU(tab, 99,99,0, b);
 	if(Cheio(tab) == 9 || Owin(tab))
 	{
 		break;
@@ -454,6 +515,23 @@ int main()
 	Jogar(tab, 99, 99);
 	Most(tab);
 	printf("\033[2J");
+	}
+	else
+	{
+	Most(tab);
+	Jogar(tab, 99, 99);
+	printf("\033[2J");
+	Most(tab);
+	JogarCPU(tab, 99,99,0, b);
+	if(Cheio(tab) == 9 || Owin(tab))
+	{
+		break;
+	}
+	
+	printf("\033[2J");
+		
+	}
+	
 	
 	
 	}while(Xwin(tab) != 1 && Cheio(tab) != 9 && Owin(tab) != 1);
