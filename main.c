@@ -87,6 +87,72 @@ int ImpedirLinhas(char a[][3])
 	return cake;
 	
 }
+int JogarLinhas(char a[][3])
+{
+	int i = 0;
+	int j = 0;
+	int vazios = 0;
+	int os = 0;
+	int cake = 0;
+	int coord = 0;
+	for(i=0; i<3; i++)
+	{	vazios = 0;
+	cake =0;
+		os = 0;
+		coord = 0;
+		for(j= 0; j<3; j++)
+		{
+			if(a[i][j] == ' ')
+			{
+			vazios++;
+			coord = j;
+			}
+			if(a[i][j] == o)
+				os++;
+		}
+		if(vazios==1 && os == 2)
+		{
+			a[i][coord]=o;
+			cake = 1;
+			return cake;
+			}
+	}
+	return cake;
+	
+}
+int JogarColunas(char a[][3])
+{
+	int i = 0;
+	int j = 0;
+	int vazios = 0;
+	int os = 0;
+	int cake = 0;
+	int coord = 0;
+	for(j=0; j<3; j++)
+	{	vazios = 0;
+		cake =0;
+		os = 0;
+		coord = 0;
+		for(i= 0; i<3; i++)
+		{
+			if(a[i][j] == ' ')
+			{
+			vazios++;
+			coord = i;
+			}
+			if(a[i][j] == o)
+				os++;
+		}
+		if(vazios==1 && os == 2)
+		{
+			a[coord][j]=o;
+			cake = 1;
+			return cake;
+			}
+	}
+	return cake;
+	
+}
 int ImpedirColunas(char a[][3])
 {
 	int i = 0;
@@ -120,7 +186,136 @@ int ImpedirColunas(char a[][3])
 	return cake;
 	
 }
-
+int JogarDiagonal(char a[][3])
+{
+	
+	int n = 0;
+	int os = 0;
+	int vazios = 0;
+	int coord = 0;
+	switch(a[0][0])
+	{
+		case o:
+			os++;
+			break;
+		case ' ':
+			vazios++;
+			coord = 1;
+			break;
+		default:
+			break;
+	}
+	switch(a[1][1])
+	{
+		case o:
+			os++;
+			break;
+		case ' ':
+			vazios++;
+			coord = 2;
+			break;
+		default:
+			break;
+	}
+	switch(a[2][2])
+	{
+		case o:
+			os++;
+			break;
+		case ' ':
+			vazios++;
+			coord = 3;
+			break;
+		default:
+			break;
+	}
+	if(vazios == 1 && os == 2)
+	{	
+		switch(coord)
+		{
+			case 1:
+				a[0][0] = o;
+				break;
+			case 2:
+				a[1][1] = o;
+				break;
+			case 3:
+				
+				a[2][2] = o;
+				break;
+			default:
+				break;
+		}
+		n= 1;
+		return n;
+	}
+	n = 0;
+	os = 0;
+	vazios = 0;
+	coord = 0;
+	switch(a[2][0])
+	{
+		case o:
+			os++;
+			break;
+		case ' ':
+			vazios++;
+			coord = 4;
+			break;
+		default:
+			break;
+	}
+	switch(a[1][1])
+	{
+		case o:
+			os++;
+			break;
+		case ' ':
+			vazios++;
+			coord = 2;
+			break;
+		default:
+			break;
+	}
+	switch(a[0][2])
+	{
+		case o:
+			os++;
+			break;
+		case ' ':
+			vazios++;
+			coord = 5;
+			break;
+		default:
+			break;
+	}
+	if(vazios == 1 && os == 2)
+	{	
+		switch(coord)
+		{
+			case 4:
+				a[2][0] = o;
+				break;
+			case 2:
+				a[1][1] = o;
+				break;
+			case 5:
+				case 1:
+				a[0][2] = o;
+				break;
+			default:
+				break;
+		}
+		n= 1;
+		return n;
+	}
+	
+	
+		
+	
+	
+	return n;
+}
 
 int ImperdirDiagonal(char a[][3])
 {
@@ -403,14 +598,22 @@ int JogarCPU(char a[][3], int x1, int x2,int num,int b)
 		switch(b)
 		{
 		case 2:
-			if(
-			ImpedirLinhas(a))
+			if(JogarLinhas(a))
+				return 0;
+			if(JogarColunas(a))
+				return 0;
+			if(ImpedirLinhas(a))
 				return 0;
 
 			if(ImpedirColunas(a))
 				return 0;
 			break;
 		case 3:
+			if(JogarDiagonal(a))
+				return 0;
+
+			if(JogarLinhas(a))
+				return 0;
 			if(ImperdirDiagonal(a))
 				return 0;
 
@@ -418,6 +621,11 @@ int JogarCPU(char a[][3], int x1, int x2,int num,int b)
 				return 0;
 			break;
 		case 4:
+			if(JogarDiagonal(a))
+				return 0;
+
+			if(JogarColunas(a))
+				return 0;
 			if(ImperdirDiagonal(a))
 				return 0;
 
@@ -429,6 +637,13 @@ int JogarCPU(char a[][3], int x1, int x2,int num,int b)
 		}
 		if(num == 0 && b==5)
 	{
+		if(JogarLinhas(a))
+				return 0;
+
+		if(JogarColunas(a))
+				return 0;
+		if(JogarDiagonal(a))
+				return 0;
 		if(ImpedirLinhas(a))
 				return 0;
 
