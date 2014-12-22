@@ -176,7 +176,7 @@ int ImperdirDiagonal(char a[][3])
 				a[1][1] = o;
 				break;
 			case 3:
-				case 1:
+				
 				a[2][2] = o;
 				break;
 			default:
