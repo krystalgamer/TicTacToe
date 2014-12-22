@@ -721,6 +721,7 @@ int main()
 	do{
 	if(c == 1)
 	{
+	printf("\033[2J");
 	 JogarCPU(tab, 99,99,0, b);
 	if(Cheio(tab) == 9 || Owin(tab))
 	{
@@ -729,7 +730,7 @@ int main()
 	Most(tab);
 	Jogar(tab, 99, 99);
 	Most(tab);
-	printf("\033[2J");
+	
 	}
 	else
 	{
