@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #define x 'X'
 #define o 'O'
-void Linha()
+void Linha()/* Print the lines*/
 {
 	int i = 0;
 	while(i++<8)
@@ -10,7 +10,7 @@ void Linha()
 	
 	printf("\n");
 }
-void Coluna(char a[][3],int n)
+void Coluna(char a[][3],int n)/* Print the Columns*/
 {
 	int i;
 	
@@ -26,7 +26,7 @@ void Coluna(char a[][3],int n)
 	printf("\n");
 	
 }
-void Most(char a[][3])
+void Most(char a[][3])/* Show the table*/
 {
 	int i = 0;
 	Coluna(a,i++);
@@ -35,7 +35,7 @@ void Most(char a[][3])
 	Linha();
 	Coluna(a,i);
 }
-int Cheio(char a[][3])
+int Cheio(char a[][3])/* Check if table is full*/
 {
 	int i = 0;
 	int j = 0;
@@ -54,7 +54,7 @@ int Cheio(char a[][3])
 	return n;
 	
 }
-int ImpedirLinhas(char a[][3])
+int ImpedirLinhas(char a[][3])/* AI- Doesn't let the player complete lines*/
 {
 	int i = 0;
 	int j = 0;
@@ -87,7 +87,7 @@ int ImpedirLinhas(char a[][3])
 	return cake;
 	
 }
-int JogarLinhas(char a[][3])
+int JogarLinhas(char a[][3])/* AI- Play in a line if there's only 1 left*/
 {
 	int i = 0;
 	int j = 0;
@@ -120,7 +120,7 @@ int JogarLinhas(char a[][3])
 	return cake;
 	
 }
-int JogarColunas(char a[][3])
+int JogarColunas(char a[][3])/* AI- Play in a column if there's only 1 left*/
 {
 	int i = 0;
 	int j = 0;
@@ -153,7 +153,7 @@ int JogarColunas(char a[][3])
 	return cake;
 	
 }
-int ImpedirColunas(char a[][3])
+int ImpedirColunas(char a[][3])/* AI- Doesn't let the player complete columns*/
 {
 	int i = 0;
 	int j = 0;
@@ -186,7 +186,7 @@ int ImpedirColunas(char a[][3])
 	return cake;
 	
 }
-int JogarDiagonal(char a[][3])
+int JogarDiagonal(char a[][3])/* AI- Complete the diagonals if there's only 1 left*/
 {
 	
 	int n = 0;
@@ -317,7 +317,7 @@ int JogarDiagonal(char a[][3])
 	return n;
 }
 
-int ImperdirDiagonal(char a[][3])
+int ImperdirDiagonal(char a[][3])/* AI- Doesn't let the player complete diagonals*/
 {
 	
 	int n = 0;
@@ -447,7 +447,7 @@ int ImperdirDiagonal(char a[][3])
 	
 	return n;
 }
-int LinhasV(char a[][3],char c)
+int LinhasV(char a[][3],char c)/* Verifies the lines*/
 {
 	int i = 0;
 	int j = 0;
@@ -470,7 +470,7 @@ int LinhasV(char a[][3],char c)
 	
 }
 
-int ColunasV(char a[][3],char c)
+int ColunasV(char a[][3],char c)/* Verifies the columns*/
 {
 	int i = 0;
 	int j = 0;
@@ -493,7 +493,7 @@ int ColunasV(char a[][3],char c)
 }
 
 
-int DiagonalV(char a[][3], char c)
+int DiagonalV(char a[][3], char c)/* Check if there's a complete diagonal*/
 {
 	
 	int n = 0;
@@ -511,7 +511,7 @@ int DiagonalV(char a[][3], char c)
 	return n;
 }
 
-int Owin(char a[][3])
+int Owin(char a[][3])/*Check if O wins*/
 {
 	int n = 0;
 	if(DiagonalV(a, o)|| ColunasV(a, o)== 3 || LinhasV(a, o)== 3)
@@ -523,7 +523,7 @@ int Owin(char a[][3])
 		
 	return n;
 }
-int Xwin(char a[][3])
+int Xwin(char a[][3])/*Check if X wins*/
 {
 	int n = 0;
 	if(DiagonalV(a, x) || ColunasV(a, x)== 3 || LinhasV(a, x)== 3)
@@ -535,13 +535,13 @@ int Xwin(char a[][3])
 		
 	return n;
 }
-int livre(char a[][3],int x1, int x2)
+int livre(char a[][3],int x1, int x2)/*Check if the space is clear*/
 {
 	if(a[x1][x2] != ' ')
 		return 0;
 	return 1;
 }
-void Jogar(char a[][3],int x1, int x2)
+void Jogar(char a[][3],int x1, int x2)/*User's move*/
 {
 	if(x1>=0 && x1<3 && x2>=0 && x2<3 && livre(a,x1,x2))
 	{
@@ -555,7 +555,7 @@ void Jogar(char a[][3],int x1, int x2)
 	
 }
 
-void FirstFreeSpot(char a[][3],char cpu)
+void FirstFreeSpot(char a[][3],char cpu)/*Plays on the first free spot called in an emergency*/
 {
 	int i = 0;
 	int j = 0;
@@ -580,7 +580,7 @@ void FirstFreeSpot(char a[][3],char cpu)
 	
 	
 }
-int JogarCPU(char a[][3], int x1, int x2,int num,int b)
+int JogarCPU(char a[][3], int x1, int x2,int num,int b)/*CPU Plays*/
 {
 	
 
@@ -675,14 +675,14 @@ int JogarCPU(char a[][3], int x1, int x2,int num,int b)
 	num++;
 	
 	
-	return JogarCPU(a, rand_num, rand_num1,num, b);
+	return JogarCPU(a, rand_num, rand_num1,num, b);/*Recursive :O*/
 	
 }
 
 
 int main()
 {
-	printf("\033[2J");
+	printf("\033[2J");/*Clear console*/
 	int x1,y1;
 	int b= 99,c = 99;
 	char tab[3][3] = {{' ',' ',' '},{' ', ' ',' '},{' ', ' ',' '}};
