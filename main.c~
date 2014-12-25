@@ -734,6 +734,7 @@ int main()
 	}
 	else
 	{
+	printf("\033[2J");
 	Most(tab);
 	Jogar(tab, 99, 99);
 	if(Cheio(tab) == 9 || Xwin(tab))
@@ -748,7 +749,7 @@ int main()
 		break;
 	}
 	
-	printf("\033[2J");
+	
 		
 	}
 	

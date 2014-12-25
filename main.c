@@ -593,7 +593,7 @@ int JogarCPU(char a[][3], int x1, int x2,int num,int b)/*CPU Plays*/
 	}
 	if(num== 0)
 	{
-		if(b<=2 && b<5)
+		if(b>=2 && b<5)
 		{
 		switch(b)
 		{
