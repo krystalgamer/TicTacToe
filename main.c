@@ -710,7 +710,7 @@ int main()
 		scanf("%d %d", &b, &c);
 	}while(b > 5 && b<0 && c>2 && c<1 );
 	
-	/*teste*/
+	//OLA
 	
 	
 	
