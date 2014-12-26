@@ -723,10 +723,13 @@ int main()
 	{
 	printf("\033[2J");
 	 JogarCPU(tab, 99,99,0, b);
+	 printf("\033[2J");
+	 Most(tab);
 	if(Cheio(tab) == 9 || Owin(tab))
 	{
 		break;
 	}
+	printf("\033[2J");
 	Most(tab);
 	Jogar(tab, 99, 99);
 	Most(tab);
@@ -737,6 +740,8 @@ int main()
 	printf("\033[2J");
 	Most(tab);
 	Jogar(tab, 99, 99);
+	printf("\033[2J");
+	Most(tab);
 	if(Cheio(tab) == 9 || Xwin(tab))
 	{
 		break;

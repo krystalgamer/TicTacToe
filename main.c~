@@ -593,7 +593,7 @@ int JogarCPU(char a[][3], int x1, int x2,int num,int b)/*CPU Plays*/
 	}
 	if(num== 0)
 	{
-		if(b<=2 && b<5)
+		if(b>=2 && b<5)
 		{
 		switch(b)
 		{
@@ -723,6 +723,8 @@ int main()
 	{
 	printf("\033[2J");
 	 JogarCPU(tab, 99,99,0, b);
+	 printf("\033[2J");
+	 Most(tab);
 	if(Cheio(tab) == 9 || Owin(tab))
 	{
 		break;
@@ -737,6 +739,8 @@ int main()
 	printf("\033[2J");
 	Most(tab);
 	Jogar(tab, 99, 99);
+	printf("\033[2J");
+	Most(tab);
 	if(Cheio(tab) == 9 || Xwin(tab))
 	{
 		break;
