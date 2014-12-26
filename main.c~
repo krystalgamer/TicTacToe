@@ -729,6 +729,7 @@ int main()
 	{
 		break;
 	}
+	printf("\033[2J");
 	Most(tab);
 	Jogar(tab, 99, 99);
 	Most(tab);
